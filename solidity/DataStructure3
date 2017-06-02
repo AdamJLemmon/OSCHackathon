@@ -1,0 +1,24 @@
+contract DataStructure {
+    string userData;
+    address master;
+
+    mapping (address => string) whitelist;
+
+    function DataStructure(string data) {
+       userData = data;
+       master = msg.sender;
+    }
+
+    function addToWhitelist(address addr) {
+        whitelist[addr] = 'allowed';
+    }
+
+    function deleteFromWhitelist(address addr) {
+        whitelist[addr] = 'denied';
+    }
+
+    function retrieval(address retriever) constant returns (string) {
+        if (whitelist[retriever] != 'allowed') throw;
+        return userData;
+    }
+}

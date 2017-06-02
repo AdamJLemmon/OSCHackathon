@@ -1,0 +1,23 @@
+contract DataStructure {
+    string userData;
+    address master;
+
+    mapping (address => bool) whitelist;
+
+    function DataStructure(string data) {
+       userData = data;
+       master = msg.sender;
+    }
+
+    function addToWhitelist(address addr) {
+        whitelist[addr] = true;
+    }
+
+    function deleteFromWhitelist(address addr) {
+        whitelist[addr] = false;
+    }
+
+    function retrieval(address retriever) constant returns (string) {
+        return userData;
+    }
+}

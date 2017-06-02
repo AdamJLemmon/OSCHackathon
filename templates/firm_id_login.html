@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+      <title>SuitYourself</title>
+      <meta charset="utf-8">
+        <!--Mobile Compatibility-->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+      <!--Bootstrap includes-->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+            <!--Font Awesome & CSS Link -->
+      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome.css') }}">
+
+    </head>
+
+    <body>
+        <div class="top_container">
+                <div class="container">
+                  <div class="center container top_container_content">
+                        <span class="nav_style_gray">Welcome Back</span>
+                        <span class="nav_style_black">|</span>
+                        <span class="nav_style_black">Login Here</span>  
+                  </div> 
+                </div>           
+            </div>
+
+        <div class="row center">
+            <img class="interior_content" src="{{ url_for('static', filename='images/LogIn_Logo.png') }}">
+        </div>  
+
+        <div class="container interior_content_topless" id="login">
+            <form id="login_form">
+              <div class="form-group">
+                <label for="user_name">User Name:</label>
+                    <input type="text" class="form-control" id="user_name">
+              </div>
+
+              <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password">
+              </div>
+            </form>
+
+            <button id="log_in_btn" type="button" class="green_letters btn btn-primary btn_text">Log In</button>
+            <button id="create_accnt_btn" type="button" class="green_letters btn btn-primary btn_text" data-toggle="modal" data-target="#createAccountModal">Create Account</button>
+
+        </div>
+
+    </body>
+
+    <script>
+        $('#log_in_btn').on('click', function() {
+            data = {
+                "user_name": $('#user_name').val(),
+                "pwd": $('#password').val(),
+             }
+
+            console.log(data)
+
+            $.ajax({
+                type : "POST",
+                url : "/firm_user_sy_login",
+                data: JSON.stringify(data, null, '\t'),
+                contentType: 'application/json;charset=UTF-8',
+                success: function(result) {
+                    console.log(result);
+                    if (result == 'Incorrect'){
+                        alert('Incorrect credentials!')
+                    }
+                    else if (result == 'Not found'){
+                        alert('No user found, please create account!')
+                    }
+                    else {
+                        console.log('replace body!')
+                        $("#login").replaceWith(result)
+                    }
+                },
+                error: function(error){
+                    console.log(error)
+                }
+            });
+        });
+    </script>
+
+</html>
+
+
+<!-- Modal -->
+<div id="createAccountModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Create Account</h4>
+          </div>
+
+          <div class="modal-body">
+              <form id="bank_login_form">
+                  <div class="form-group">
+                    <label for="user_name">User Name:</label>
+                    <input type="text" class="form-control" id="bank_user_name">
+                  </div>
+                  <div class="form-group">
+                    <label for="bank_password">Password:</label>
+                    <input type="password" class="form-control" id="bank_password">
+                  </div>
+                </form>
+
+                <!--<button id="bank_create" type="button" class="btn btn-primary">Submit</button>-->
+                <a id="bank_create" type="button" class="btn btn-primary" href="/suit_yourself/profiles">Submit</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+
+            </div>
+
+          <div class="modal-footer">
+          </div>
+    </div>
+
+  </div>
+    <script>
+            $('#bank_create').on('click', function() {
+                console.log('click')
+
+                data = {
+                    "user_name": $('#bank_user_name').val(),
+                    "pwd": $('#bank_password').val()
+                 }
+
+                console.log(data)
+
+                $.ajax({
+                    type : "POST",
+                    url : "/firm_user_create",
+                    data: JSON.stringify(data, null, '\t'),
+                    contentType: 'application/json;charset=UTF-8',
+                    success: function(result) {
+                        console.log(result);
+
+                        if (result == 'Incorrect'){
+                            alert('User Name Exists!!')
+                        }
+                        else {
+                            <!--$('body').replaceWith(result);-->
+                            <!--$('#createAccountModal').modal('hide')-->
+                        }
+                    },
+                    error: function(error){
+                        console.log(error)
+                    }
+                });
+            });
+
+    </script>
+
+</div>

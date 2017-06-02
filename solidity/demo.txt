@@ -1,0 +1,53 @@
+var source = "contract MyToken {
+    mapping (address => uint256) public balanceOf;
+    function MyToken( uint256 initialSupply )
+    {
+        balanceOf[msg.sender] = 60000;
+    }
+    function transfer(address _to, uint256 _value) {
+        if (balanceOf[msg.sender] < _value)
+            throw;
+        if (balanceOf[_to] + _value < balanceOf[_to])
+            throw;
+        balanceOf[msg.sender] -= _value;
+        balanceOf[_to] += _value;
+    }
+}"
+
+web3.eth.defaultAccount = web3.eth.coinbase
+
+personal.unlockAccount(web3.eth.accounts[0],'oschackathon',100000000)
+
+var source = "contract MyToken { mapping (address => uint256) public balanceOf; function MyToken( uint256 initialSupply ) { balanceOf[msg.sender] = 60000; } function transfer(address _to, uint256 _value) { if (balanceOf[msg.sender] < _value) throw; if (balanceOf[_to] + _value < balanceOf[_to]) throw; balanceOf[msg.sender] -= _value; balanceOf[_to] += _value; } }"
+
+var tokenCompiled = web3.eth.compile.solidity(source);
+
+var tokenContract = web3.eth.contract(tokenCompiled.MyToken.info.abiDefinition);
+
+
+var token = tokenContract.new(
+{
+from: web3.eth.accounts[6],
+data: tokenCompiled.MyToken.code,
+gas: 4700000
+},
+function(e, contract){
+    if(!e) {
+        if(!contract.address) {
+            console.log("Contract transaction send: TransactionHash: " + contract.transactionHash + " waiting to be mined...");
+        } else {
+            console.log("Contract mined! Address: " + contract.address);
+            console.log(contract);
+        }
+    } else {
+        console.log(e);
+    }
+});
+
+var token = tokenContract.new( { from: web3.eth.defaultAccount, data: tokenCompiled.MyToken.code, gas: 4700000 }, function(e, contract){ if(!e) { if(!contract.address) { console.log("Contract transaction send: TransactionHash: " + contract.transactionHash + " waiting to be mined..."); } else { console.log("Contract mined! Address: " + contract.address); console.log(contract); } } else { console.log(e) } });
+
+
+
+
+
+

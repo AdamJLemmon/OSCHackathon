@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<html lang="en">
+
+    <head>
+      <title>User</title>
+      <meta charset="utf-8">
+        <!--Mobile Compatibility-->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!--Bootstrap includes-->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+      <!--Font Awesome & CSS Link -->
+      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome.css') }}">
+
+    </head>
+
+    <body>
+
+            <div class="row top_container">
+                <div class="container">
+                  <div class="container top_container_content">
+                        <img src="{{ url_for('static', filename='images/logo_top_container.png') }}">
+                        <span class="nav_style_gray">A Glance</span>
+                        <span class="nav_style_black">All Your Profiles In One Place</span>
+                  </div>
+                </div>
+            </div>
+
+            <div class="container interior_content" id="login">
+                    <h1 class="page_title_style red_top">Your Suitability Profiles</i></h1>
+                
+
+                <div class="row center card_style_less_pad">
+                      <div>
+                             <img src="{{ url_for('static', filename='images/td-bank-logo.png') }}" style="width:70px;height:70px;"> <br>
+                             <h4><i>Profile: 0011893125</i></h4>
+                             <h4><i>High Risk</i></h4>
+                      </div>
+                </div>
+                
+                <div class="row center" id="profile_container"></div>
+
+                <div class="row center">
+                    <a id="suit_form" type="button" class="btn btn-primary btn_text register_btn" data-toggle="modal" data-target="#suitability_form">Create Suitability Profile</a>
+                </div>
+            </div>
+
+        <!--<div class="container col-md-3">-->
+
+            <!--<div class="container">-->
+                <!--<h3>Suitability Profiles</h3>-->
+                <!--<div>-->
+                    <!--<div class="row">-->
+                    <!--</div>-->
+                    <!--<div class="row">-->
+                        <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#suitability_form">Create Suitability Account</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </body>
+
+    <script>
+
+    </script>
+
+</html>
+
+<!-- Modal -->
+<div id="suitability_form" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content col-md-12">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h1 class="page_title_style red_top">Create Your Suitability Profile</i></h1>
+      </div>
+
+      <div class="modal-body">
+        </br>
+        <div class="container col-md-12">
+                <div class="row center_no_pad">
+                    <label>What is your level of investment knowledge?</label>
+                </div>
+                <div class="row center_btn">
+                        <div id="invest_knowledge" class="btn-group">
+                            <a class="btn btn-primary btn-sm active" data-toggle="know" data-title="Extensive">Extensive</a>
+                            <a class="btn btn-primary btn-sm notActive" data-toggle="know" data-title="Moderate">Moderate</a>
+                            <a class="btn btn-primary btn-sm notActive" data-toggle="know" data-title="None">None</a>
+                        </div>
+                </div>
+
+                <div class="row center_no_pad">
+                        <label>What is your net income?</label>
+                        <input type="text" class="form-control" id="income">
+                </div>
+
+                <div class="row center_no_pad">
+                    <label>What is your investment horizon?</label>
+                </div>
+                <div class="row center_btn">
+                    <div id="invest_horizon" class="btn-group">
+                        <a class="btn btn-primary btn-sm active" data-toggle="hor" data-title="1">1 year</a>
+                        <a class="btn btn-primary btn-sm notActive" data-toggle="hor" data-title="2">2 years</a>
+                        <a class="btn btn-primary btn-sm notActive" data-toggle="hor" data-title="3">3 years</a>
+                        <a class="btn btn-primary btn-sm notActive" data-toggle="hor" data-title="5">More than 5 years</a>
+                    </div>
+                </div>
+
+                <div class="row center_no_pad">
+                    <label>What are your investment objectives?</label>
+                </div>
+                <div class="row center_btn">
+                    <div id="invest_obj" class="btn-group">
+                        <a class="btn btn-primary btn-sm active" data-toggle="obj" data-title="Aggressive">Aggressive Growth</a>
+                        <a class="btn btn-primary btn-sm notActive" data-toggle="obj" data-title="Moderate">Moderate Growth</a>
+                        <a class="btn btn-primary btn-sm notActive" data-toggle="obj" data-title="Conservative">Conservative</a>
+                    </div>
+                </div>
+
+                <div class="row center_no_pad">
+                    <label>What is your risk tolerance?</label>
+                </div>
+                <div class="row center_btn">
+                    <div id="risk" class="btn-group">
+                        <a class="btn btn-primary btn-sm active" data-toggle="risk" data-title="Speculative">Speculative</a>
+                        <a class="btn btn-primary btn-sm notActive" data-toggle="risk" data-title="Medium">Medium</a>
+                        <a class="btn btn-primary btn-sm notActive" data-toggle="risk" data-title="Low">Low</a>
+                    </div>
+                </div>
+
+                <div class="row center_no_pad">
+                    <label>What would you like to label this profile?</label>
+                    <input type="text" class="form-control" id="profile_name">
+                </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="suit_submit" data-dismiss="modal">Submit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+      <script>
+        var knowledge = "Extensive"
+        var horizon = 1
+        var obj = "Aggressive"
+        var risk = "Speculative"
+
+          $('#suit_submit').on('click', function(){
+
+            data = {
+                "knowledge": knowledge,
+                "income": $('#income').val(),
+                "horizon": horizon,
+                "obj": obj,
+                "risk": risk,
+                "profile_name": $('#profile_name').val()
+            }
+
+            console.log(data)
+
+            $.ajax({
+                    type : "POST",
+                    url : "/deploy_contract",
+                    data: JSON.stringify(data, null, '\t'),
+                    contentType: 'application/json;charset=UTF-8',
+                    success: function(result) {
+                        console.log(result);
+                            var new_suit = '<div class="row center card_style_less_pad"><div><img src="{{ url_for('static', filename='images/dealer_logo_cibc.png') }}"> <br><h4><i>Profile: 0131855185</i></h4><h4><i>' + result + '</i></h4></div></div>'
+                            $('#profile_container').append(new_suit)
+                    },
+                    error: function(error){
+                        console.log(error)
+                    }
+                });
+          })
+
+          $('#invest_knowledge a').on('click', function(){
+            var sel = $(this).data('title');
+            var tog = $(this).data('toggle');
+
+            knowledge = sel
+
+                $('#'+tog).prop('value', sel);
+
+                $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
+                $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
+            })
+
+            $('#invest_horizon a').on('click', function(){
+            var sel = $(this).data('title');
+            var tog = $(this).data('toggle');
+
+            horizon = sel
+
+                $('#'+tog).prop('value', sel);
+
+                $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
+                $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
+            })
+
+
+            $('#invest_obj a').on('click', function(){
+            var sel = $(this).data('title');
+            var tog = $(this).data('toggle');
+
+            obj = sel
+
+                $('#'+tog).prop('value', sel);
+
+                $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
+                $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
+            })
+
+            $('#risk a').on('click', function(){
+            var sel = $(this).data('title');
+            var tog = $(this).data('toggle');
+
+            risk = sel
+
+                $('#'+tog).prop('value', sel);
+
+                $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
+                $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
+            })
+
+      </script>
+
+</div>

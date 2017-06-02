@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+    <head>
+      <title>CIBC Portal</title>
+      <meta charset="utf-8">
+
+        <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+
+        <!--Mobile Compatibility-->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!--Bootstrap includes-->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+      <!--Font Awesome & CSS Link -->
+      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome.css') }}">
+
+    </head>
+
+    <body>
+            <div class="row top_container">
+                <div class="container">
+                  <div class="container top_container_content">
+                        <img src="{{ url_for('static', filename='images/logo_top_container.png') }}">
+                        <span class="nav_style_gray">Step 1</span>
+                        <span class="nav_style_black">Enter Information</span>  
+                  </div> 
+                </div>           
+            </div>
+    
+            <div class="container interior_content" id="login">
+                 <h1 class="page_title_style red_top">Create Account</i></h1>
+                                             
+                    <div id="bank_login">
+
+                       <form class="form_content" id="bank_form">
+                          
+                          <div class="row form-group activated_form_style">                    
+                            <label for="user_name" class="subtext_style">Dealer:</label> <br>
+                            <img src="{{ url_for('static', filename='images/dealer_logo_cibc.png') }}">
+                          </div>
+
+                          <div class="row form-group activated_form_style">                    
+                            <label for="user_name" class="subtext_style">User Name:</label>
+                            <input type="text" class="form-control" id="user_login_name">
+                          </div>
+
+                          <div class="row form-group">
+                            <label for="password" class="subtext_style">Password:</label>
+                            <input type="password" class="form-control" id="password">
+                          </div>
+
+                        </form>
+                        <div>
+                              <span><a id="log_in_btn" type="button" class="green_letters btn btn-primary btn_text">Log In</a></span>
+                              <span><a id="create_accnt_btn" type="button" class="white_letters btn btn-primary btn_text register_btn">Enter KYC Info</a></span>
+                        </div>                                    
+                    </div>
+            </div>
+
+    </body>
+
+    <script>
+    var account_type = 0
+
+    <!-- Login  -->
+    $('#log_in_btn').on('click', function() {
+            data = {
+                "user_name": $('#user_login_name').val(),
+                "pwd": $('#password').val(),
+             }
+
+            console.log(data)
+
+            $.ajax({
+                type : "POST",
+                url : "/bank_user_login",
+                data: JSON.stringify(data, null, '\t'),
+                contentType: 'application/json;charset=UTF-8',
+                success: function(result) {
+                    console.log(result);
+                    if (result == 'Incorrect'){
+                        alert('Incorrect credentials!')
+                    }
+                    else if (result == 'Not found'){
+                        alert('No user found, please create account!')
+                    }
+                    else {
+                        console.log('replace body!')
+                        $(".top_container").hide()
+                        $("#login").replaceWith(result)
+                    }
+                },
+                error: function(error){
+                    console.log(error)
+                }
+            });
+        });
+
+    $('#create_accnt_btn').on('click', function(){
+        console.log('creating accnt')
+        <!--user_account = $('#radioBtn a').data('title');;-->
+        <!--console.log(user_account)-->
+
+        console.log(account_type)
+
+        if (account_type == 0){
+            console.log('show modal')
+            $('#clientAccountModal2').modal('show')
+        }
+        else {
+            $('#bankAccountModal').modal('show')
+        }
+
+    })
+
+    $('#radioBtn a').on('click', function(){
+    var sel = $(this).data('title');
+    var tog = $(this).data('toggle');
+
+    account_type = sel
+
+        $('#'+tog).prop('value', sel);
+
+        $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
+        $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
+    })
+    </script>
+
+</html>
+
+
+
+
+<!-- Modal -->
+<div id="clientAccountModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Enter KYC Info</h4>
+      </div>
+
+      <!--<div class="modal-body">-->
+            <div class="modal_content container col-md-8" id="login_form">
+                <form>
+                <div class="form-group">
+                    <label for="user_name">User Name:</label>
+                    <input type="text" class="form-control" id="user_name">
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="client_password">
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Name: </label>
+                    <input type="text" class="form-control" id="name">
+                  </div>
+                  <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input type="text" class="form-control" id="address">
+                  </div>
+                  <div>
+                    <label for="dob">Date of Birth:</label>
+                    <input type="text" class="form-control" id="dob">
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" id="check">Do you Consent to Share Legal Info?</label>
+                      <p>Some legal language...</p>
+                  </div>
+                </form>
+
+                <a id="verify_credentials" type="button" href="/cibc/firm_id_cibc">VERIFY</a>
+            </div>
+      <!--</div>-->
+      <div class="modal-footer">
+          <!--<a href="/cibc/firm_id_cibc">Continue</a>-->
+      </div>
+    </div>
+
+  </div>
+    <script>
+        $('#verify_credentials').on('click', function() {
+        console.log('click')
+
+        data = {
+            "user_name": $('#user_name').val(),
+            "pwd": $('#client_password').val(),
+            "name": $('#name').val(),
+            "address": $('#address').val(),
+            "dob": $('#dob').val(),
+            "check": $('#check').val(),
+            "type": "client"
+         }
+
+        console.log(data)
+
+        $.ajax({
+            type : "POST",
+            url : "/bank_client_user_create",
+            data: JSON.stringify(data, null, '\t'),
+            contentType: 'application/json;charset=UTF-8',
+            success: function(result) {
+                console.log(result);
+
+                if (result == 'Incorrect'){
+                    alert('User Name Exists!!')
+                }
+                else {
+                    <!--$('body').replaceWith(result);-->
+                    <!--$('#clientAccountModal2').modal('hide')-->
+                }
+            },
+            error: function(error){
+                console.log(error)
+            }
+        });
+    });
+
+    </script>
+
+
+</div>
+
+
+
+
+<!-- Modal -->
+<div id="bankAccountModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Create Account</h4>
+          </div>
+
+          <div class="modal-body">
+              <form id="bank_login_form">
+                  <div class="form-group">
+                    <label for="user_name">User Name:</label>
+                    <input type="text" class="form-control" id="bank_user_name">
+                  </div>
+                  <div class="form-group">
+                    <label for="bank_password">Password:</label>
+                    <input type="password" class="form-control" id="bank_password">
+                  </div>
+                </form>
+
+                <button id="bank_create" type="button" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+
+            </div>
+
+          <div class="modal-footer">
+          </div>
+    </div>
+
+  </div>
+    <script>
+            $('#bank_create').on('click', function() {
+                console.log('click')
+
+                data = {
+                    "user_name": $('#bank_user_name').val(),
+                    "pwd": $('#bank_password').val(),
+                    "type": "bank"
+                 }
+
+                console.log(data)
+
+                $.ajax({
+                    type : "POST",
+                    url : "/bank_user_create",
+                    data: JSON.stringify(data, null, '\t'),
+                    contentType: 'application/json;charset=UTF-8',
+                    success: function(result) {
+                        console.log(result);
+
+                        if (result == 'Incorrect'){
+                            alert('User Name Exists!!')
+                        }
+                        else {
+                            $('body').replaceWith(result);
+                            $('#bankAccountModal').modal('hide')
+                        }
+                    },
+                    error: function(error){
+                        console.log(error)
+                    }
+                });
+            });
+
+    </script>
+
+</div>

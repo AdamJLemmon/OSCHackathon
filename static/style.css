@@ -1,0 +1,192 @@
+	
+/*
+	ICON LIBRARY:
+	fa-bolt
+	fa-leaf
+	fa-anchor
+	fa-plus-circle
+
+	BACKGROUND REFERENCES:
+	BLUE: background-image: linear-gradient(-180deg, #04AEFF 0%, #055B84 100%);
+	RED: background-image: linear-gradient(-180deg, #D7173C 0%, #500C13 100%);
+	YELLOW: background-image: linear-gradient(-180deg, #D38B21 0%, #77280E 100%);
+	GREY: background-image: linear-gradient(-180deg, #BDBDBD 0%, #9A9A9A 100%);
+*/
+
+	/* FONTS: Open Sans & Montserrat; */
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans:300,400,600,700');
+
+
+html {
+    height: 100%;
+}
+
+body {
+	background-color: white; 
+}
+
+.top_container {
+	background-color: #F0F0F0;
+	width: 100%;
+	height: 65px;
+	position:relative;
+	margin: auto;
+}
+
+.conservative {
+    background-color: #F0F0F0;
+	width: 100%;
+	height: 600px;
+	position:relative;
+	margin: auto;
+}
+
+.top_container_content {
+	padding: 10px 30px 0px 30px;
+	vertical-align: middle;
+}
+
+.page_title_style {
+	font-family: 'Montserrat';
+	font-size: 24px;
+	color: #AE0A1C;
+	padding: 5px 0px 0px 0px;
+}
+
+.modal-title {
+	font-family: 'Montserrat';
+	font-size: 24px;
+	color: #AE0A1C;
+}
+.nav_style_gray {
+font-family: 'Montserrat';
+font-weight: 'Bold';
+font-size: 14px;
+color: #939393;
+letter-spacing: 0.31px;
+}
+
+.nav_style_black {
+font-family: 'Montserrat-bold';
+font-weight: 'Bold';
+font-size: 14px;
+color: black;
+letter-spacing: 0.31px;
+}
+
+label {
+	font-family: 'OpenSans';
+	font-size: 14px;
+	color: #939393;
+	letter-spacing: 0.81px;
+}
+
+.activated_form_style {
+	font-family: 'OpenSans';
+	font-size: 16px;
+	color: #000000;
+	letter-spacing: 0.92px;
+}
+
+.deactivated_form_style {
+	font-family: 'OpenSans';
+	font-size: 16px;
+	color: #939393;
+	letter-spacing: 0.92px;
+}
+
+.greenbutton_text_style {
+font-family: 'Montserrat-Bold';
+font-size: 14px;
+color: #294903;
+letter-spacing: 0.81px;
+}
+
+.bluebutton_text_style {
+font-family: Montserrat-Bold;
+font-size: 14px;
+color: #FFFFFF;
+letter-spacing: 0.81px;
+}
+
+.red_top {
+	border-top: 5px solid #AE0A1C;
+}
+
+.interior_content{
+	padding: 40px 30px 0px 30px;
+}
+
+.interior_content_topless {
+	padding: 40px 30px 0px 30px;
+}
+
+.form_content{
+	padding: 0px 15px 0px 15px;
+}
+
+.btn-primary {	
+background: #7ED321;
+border: none;
+border-radius: 69px;
+}
+
+.green_letters {
+font-family: 'Montserrat-Bold';
+text-align: center;
+font-size: 14px;
+color: #294903;
+letter-spacing: 0.81px;
+}
+
+.white_letters {
+font-family: 'Montserrat-Bold';
+text-align: center;
+font-size: 14px;
+color: white;
+letter-spacing: 0.81px;
+}
+
+.register_btn {
+background: #04AEFF;
+border-radius: 69px;
+text-align: center;
+}
+
+.its_inside_card {
+margin: 25px 0px 0px 0px;
+}
+
+.card_style {
+	border-width: 1px;
+    border-color: gray;
+    border-style: solid;
+    margin: 30px 0px 30px 0px;
+}
+
+.card_style_less_pad {
+	border-width: 1px;
+    border-color: gray;
+    border-style: solid;
+    margin: 0px 0px 0px 0px;
+}
+
+.center {
+    text-align: center;
+    padding: 25px;
+}
+
+.modal_content {
+	margin: 30px 0px 30px 0px;
+}
+
+.center_no_pad {
+    text-align: center;
+    padding: 20px 0px 10px 0px;
+}
+
+.center_btn {
+    text-align: center;
+    padding: 10px 0px 20px 0px;
+}
+
